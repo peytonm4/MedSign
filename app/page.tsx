@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { useLanguage } from "@/contexts/language-context"
+import { useLanguage } from "../src/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
