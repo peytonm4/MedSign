@@ -1,14 +1,28 @@
 "use client"
 
-import Link from "next/link"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 import { useLanguage } from "@/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle2 } from "lucide-react"
 
+const SESSION_TIMEOUT = 60
+
 export default function ConfirmationPage() {
   const { t } = useLanguage()
+  const router = useRouter()
+  const [secondsLeft, setSecondsLeft] = useState(SESSION_TIMEOUT)
+
+  useEffect(() => {
+    if (secondsLeft <= 0) {
+      router.push("/")
+      return
+    }
+    const timer = setTimeout(() => setSecondsLeft((s) => s - 1), 1000)
+    return () => clearTimeout(timer)
+  }, [secondsLeft, router])
 
   return (
     <div className="container flex min-h-[calc(100vh-40px)] flex-col items-center justify-center px-4 py-8">
@@ -38,13 +52,15 @@ export default function ConfirmationPage() {
             </p>
           </div>
         </CardContent>
-        <CardFooter className="flex justify-center">
-          <Link href="/">
-            <Button className="h-12 px-8 text-base">{t("done")}</Button>
-          </Link>
+        <CardFooter className="flex flex-col items-center gap-3">
+          <Button className="h-12 px-8 text-base" onClick={() => router.push("/")}>
+            {t("done")}
+          </Button>
+          <p className="text-xs text-muted-foreground">
+            Returning to home in {secondsLeft}s
+          </p>
         </CardFooter>
       </Card>
     </div>
   )
 }
-

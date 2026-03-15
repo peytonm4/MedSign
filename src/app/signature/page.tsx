@@ -17,7 +17,7 @@ export default function SignaturePage() {
     <div className="container flex min-h-[calc(100vh-40px)] flex-col items-center justify-center px-4 py-8">
       <LanguageSwitcher />
 
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-2xl">
         <CardHeader>
           <div className="flex items-center">
             <Link href="/consent">

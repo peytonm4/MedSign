@@ -32,7 +32,7 @@ export function SignaturePad({ onSignatureChange }: SignaturePadProps) {
     canvas.height = rect.height * dpr
 
     ctx.scale(dpr, dpr)
-    ctx.lineWidth = 2
+    ctx.lineWidth = 3
     ctx.lineCap = "round"
     ctx.lineJoin = "round"
     ctx.strokeStyle = "#000"
@@ -138,7 +138,7 @@ export function SignaturePad({ onSignatureChange }: SignaturePadProps) {
       <div className="relative rounded-md border bg-white" style={{ touchAction: "none" }}>
         <canvas
           ref={canvasRef}
-          className="h-[200px] w-full cursor-crosshair"
+          className="h-[50vh] w-full cursor-crosshair"
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={endDrawing}
