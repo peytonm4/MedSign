@@ -35,7 +35,40 @@ App was originally built in v0 (Vercel's AI UI builder) and exported. It has a w
 - Delete root `/app/` directory
 
 **Files affected:**
-- `/app/page.tsx` — move to `src/app/page.tsx`
-- `/app/layout.tsx` — move to `src/app/layout.tsx`
-- `/app/dashboard/loading.tsx` — move to `src/app/dashboard/loading.tsx`
-- `/app/` — delete after migration
+- `/app/page.tsx` — moved to `src/app/page.tsx`, fixed broken relative import on `useLanguage`
+- `/app/layout.tsx` — moved to `src/app/layout.tsx`
+- `/app/dashboard/loading.tsx` — moved to `src/app/dashboard/loading.tsx`
+- `/app/` — deleted
+
+**Status: Complete. App runs locally on `npm run dev`.**
+
+---
+
+### 2026-03-15 — iPad kiosk UX improvements
+
+**Context:** App is used on a shared iPad in-person at a pharmacy counter by patients picking up prescriptions.
+
+**Changes:**
+- `src/components/signature-pad.tsx` — canvas height `h-[200px]` → `h-[50vh]`, stroke width 2 → 3 for finger drawing
+- `src/app/signature/page.tsx` — card width `max-w-md` → `max-w-2xl` to fill iPad width
+- `src/app/confirmation/page.tsx` — added 60-second countdown timer that auto-redirects to `/` to reset the kiosk for the next patient
+
+**Committed and pushed to `main` (5358fba).**
+
+---
+
+## Current Status (end of 2026-03-15 session)
+
+- **Frontend:** Complete, runs locally
+- **Backend:** None — all data is mocked/static
+- **Auth:** None — login forms exist but don't validate
+- **Database:** None
+
+## Backlog / Next Up
+
+- Step progress indicator on patient flow (verify → consent → signature → confirmation)
+- Larger touch targets / custom numeric pad for RX code and DOB inputs
+- Session timeout on other patient pages (not just confirmation)
+- Consent page accordion to reduce wall-of-text
+- Dashboard empty/loading states
+- Language switcher moved into header instead of absolute positioned
